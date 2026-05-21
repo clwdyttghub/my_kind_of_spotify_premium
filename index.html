@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Premium :O</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="launch-screen" id="launchScreen">
+        <i class="fa-brands fa-spotify" style="font-size: 50px; color: white; margin-bottom: 20px;"></i>
+        <button class="launch-btn" onclick="startApp()">Wanna listen to spotify premium?</button>
+    </div>
+
+    <div class="mobile-player-card">
+        <div class="carousel-viewport">
+            <div class="carousel-container" id="carousel"></div>
+        </div>
+
+        <div class="info-header">
+            <div>
+                <h1 class="song-title">Libu-Libong Buwan</h1>
+                <p class="artist-name">Kyle Raphael <span class="feature-tag">ft. clauwdey(?)</span></p>
+            </div>
+            <i class="fa-regular fa-heart heart-icon" id="heartBtn" onclick="toggleLike()"></i>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-bar-container" id="progressBar" onclick="setProgress(event)">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="time-info">
+                <span id="current-time">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+        </div>
+
+        <div class="main-controls">
+            <i class="fa-solid fa-shuffle control-icon" style="color: var(--text-muted)"></i>
+            <i class="fa-solid fa-backward-step control-icon" onclick="rotateGallery(-1)"></i>
+            <button class="play-pause-btn" onclick="togglePlay()">
+                <i class="fa-solid fa-play" id="play-icon" style="margin-left: 3px;"></i>
+            </button>
+            <i class="fa-solid fa-forward-step control-icon" onclick="rotateGallery(1)"></i>
+            <i class="fa-solid fa-repeat control-icon" style="color: var(--text-muted)"></i>
+        </div>
+
+        <div class="lyrics-mini-window" id="lyrics-scroll">
+            <div class="lyric-line"><span class="lyric-word" data-time="1.28">Kahit</span> <span class="lyric-word" data-time="1.32">saan,</span> <span class="lyric-word" data-time="4.99">kahit</span> <span class="lyric-word" data-time="5.83">kailan</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="9.16">Kahit</span> <span class="lyric-word" data-time="9.87">anong</span> <span class="lyric-word" data-time="10.61">bagyo</span> <span class="lyric-word" data-time="11.51">pa</span> <span class="lyric-word" data-time="11.81">man</span> <span class="lyric-word" data-time="12.51">ang</span> <span class="lyric-word" data-time="13.49">dumaan</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="14.70">Ikaw</span> <span class="lyric-word" data-time="15.56">pa</span> <span class="lyric-word" data-time="15.85">ri'y</span> <span class="lyric-word" data-time="16.77">pupuntahan,</span> <span class="lyric-word" data-time="21.22">hmm</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="25.15">At</span> <span class="lyric-word" data-time="25.67">kung</span> <span class="lyric-word" data-time="25.98">ano</span> <span class="lyric-word" data-time="26.26">man</span> <span class="lyric-word" data-time="28.56">ang</span> <span class="lyric-word" data-time="29.02">nararamdaman</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="33.12">Asahan</span> <span class="lyric-word" data-time="33.82">mong</span> <span class="lyric-word" data-time="34.71">ako'y</span> <span class="lyric-word" data-time="35.73">andito</span> <span class="lyric-word" data-time="36.74">lang</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="37.61">'Di</span> <span class="lyric-word" data-time="37.90">ako</span> <span class="lyric-word" data-time="39.00">lalayo,</span> <span class="lyric-word" data-time="40.56">kailan</span> <span class="lyric-word" data-time="41.69">pa</span> <span class="lyric-word" data-time="41.99">man</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="45.00">Kailan</span> <span class="lyric-word" data-time="45.53">pa</span> <span class="lyric-word" data-time="46.67">man</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="49.24">At</span> <span class="lyric-word" data-time="49.74">kahit</span> <span class="lyric-word" data-time="50.19">madalas</span> <span class="lyric-word" data-time="51.51">na</span> <span class="lyric-word" data-time="52.00">tayong</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="53.60">'Di</span> <span class="lyric-word" data-time="54.70">magkasunduan</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="57.76">Ikaw</span> <span class="lyric-word" data-time="58.50">pa</span> <span class="lyric-word" data-time="58.80">rin</span> <span class="lyric-word" data-time="59.57">ang</span> <span class="lyric-word" data-time="60.20">uuwian</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="65.87">Mahal,</span> <span class="lyric-word" data-time="66.68">ikaw</span> <span class="lyric-word" data-time="67.68">ang</span> <span class="lyric-word" data-time="68.22">uuwian</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="73.18">Baguhin</span> <span class="lyric-word" data-time="73.86">man</span> <span class="lyric-word" data-time="76.50">ng</span> <span class="lyric-word" data-time="76.92">libo-libong</span> <span class="lyric-word" data-time="77.83">buwan</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="81.13">Ang</span> <span class="lyric-word" data-time="81.48">kulay</span> <span class="lyric-word" data-time="81.97">ng</span> <span class="lyric-word" data-time="82.72">kalangitan</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="84.92">Pangako</span> <span class="lyric-word" data-time="85.93">ko,</span> <span class="lyric-word" data-time="86.79">hindi</span> <span class="lyric-word" data-time="87.83">kita</span> <span class="lyric-word" data-time="88.90">iiwan</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="93.04">Pangako 'yan</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="97.08">At</span> <span class="lyric-word" data-time="97.58">kahit</span> <span class="lyric-word" data-time="98.19">madalas</span> <span class="lyric-word" data-time="99.54">na</span> <span class="lyric-word" data-time="100.02">tayong</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="101.67">'Di</span> <span class="lyric-word" data-time="102.99">magkasunduan</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="106.24">Ikaw</span> <span class="lyric-word" data-time="106.75">pa</span> <span class="lyric-word" data-time="107.13">rin</span> <span class="lyric-word" data-time="107.57">ang</span> <span class="lyric-word" data-time="108.16">uuwian</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="113.93">Mahal,</span> <span class="lyric-word" data-time="114.80">ikaw</span> <span class="lyric-word" data-time="115.63">ang</span> <span class="lyric-word" data-time="116.09">uuwian</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="120.55">At</span> <span class="lyric-word" data-time="121.06">kung</span> <span class="lyric-word" data-time="121.62">umabot</span> <span class="lyric-word" data-time="122.13">man</span> <span class="lyric-word" data-time="123.73">sa</span> <span class="lyric-word" data-time="124.14">dulo</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="125.90">At</span> <span class="lyric-word" data-time="126.41">tatanda</span> <span class="lyric-word" data-time="127.63">na</span> <span class="lyric-word" data-time="128.12">tayo</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="130.13">Ikaw</span> <span class="lyric-word" data-time="130.83">pa</span> <span class="lyric-word" data-time="131.43">rin</span> <span class="lyric-word" data-time="131.83">ang</span> <span class="lyric-word" data-time="132.96">uuwian</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="136.53">At</span> <span class="lyric-word" data-time="137.33">kahit</span> <span class="lyric-word" data-time="138.11">na</span> <span class="lyric-word" data-time="139.10">maghirap</span> <span class="lyric-word" data-time="140.10">tayo</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="141.96">'Di</span> <span class="lyric-word" data-time="142.73">na</span> <span class="lyric-word" data-time="143.65">magbabago</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="148.00">Ikaw</span> <span class="lyric-word" data-time="148.81">pa</span> <span class="lyric-word" data-time="149.35">rin</span> <span class="lyric-word" data-time="149.92">ang</span> <span class="lyric-word" data-time="150.42">uuwian</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="155.78">Ikaw</span> <span class="lyric-word" data-time="156.16">pa</span> <span class="lyric-word" data-time="157.62">rin</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="159.44">Oh,</span> <span class="lyric-word" data-time="160.06">ikaw</span> <span class="lyric-word" data-time="160.81">pa</span> <span class="lyric-word" data-time="161.21">rin</span></div>
+            <div class="lyric-line"><span class="lyric-word" data-time="164.05">Ikaw</span> <span class="lyric-word" data-time="164.86">lang</span> <span class="lyric-word" data-time="166.05">ang</span> <span class="lyric-word" data-time="166.81">uuwian</span></div>
+        </div>
+    </div>
+
+    <audio id="audio" src="llb-loves.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
